@@ -52,7 +52,6 @@ namespace RedisConsoleClient
             {
                 IRedisTypedClient<Phone> phones = redisClient.As<Phone>();
                 Phone phoneFive = phones.GetValue("5");
-                var temp = phones.
                 if (phoneFive == null)
                 {
                     // make a small delay
@@ -75,8 +74,10 @@ namespace RedisConsoleClient
                     // adding Entry to the typed entity set
                     phones.SetEntry(phoneFive.Id.ToString(), phoneFive);
                 }
-                message = "Phone model is " + phoneFive.Manufacturer;
+                var message = "Phone model is " + phoneFive.Manufacturer;
+                Console.WriteLine(message);
                 message += "Phone Owner Name is: " + phoneFive.Owner.Name;
+                Console.WriteLine(message);
             }
 
 #if DEBUG
