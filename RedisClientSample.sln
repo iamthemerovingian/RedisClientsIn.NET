@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisClientSample", "RedisClientSample\RedisClientSample.csproj", "{67F956C3-2885-4EC9-96E0-6FD13DEAF3F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisConsoleClient", "RedisConsoleClient\RedisConsoleClient.csproj", "{FDA288C1-D68A-4391-9219-8E652AC27152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{67F956C3-2885-4EC9-96E0-6FD13DEAF3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F956C3-2885-4EC9-96E0-6FD13DEAF3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F956C3-2885-4EC9-96E0-6FD13DEAF3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA288C1-D68A-4391-9219-8E652AC27152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA288C1-D68A-4391-9219-8E652AC27152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA288C1-D68A-4391-9219-8E652AC27152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA288C1-D68A-4391-9219-8E652AC27152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A3DAA26-1976-442B-8287-D6A8DBDBE526}
 	EndGlobalSection
 EndGlobal
