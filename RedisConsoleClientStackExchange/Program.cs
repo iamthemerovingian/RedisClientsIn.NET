@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Newtonsoft.Json;
+using StackExchange.Redis;
 using StackExchange.Redis.Extensions.Core;
 using StackExchange.Redis.Extensions.Newtonsoft;
 using System;
@@ -37,7 +38,7 @@ namespace RedisConsoleClientStackExchange
             db.StringSet(key, value);
             byte[] gottenfromRedisByteArray = db.StringGet(key);
 
-            //Loading and getting an Object from Redis.
+            //Loading and getting an Object from Redis using my own serialization methods.
             var someFellow = new Person
             {
                 Id = 1,
@@ -45,14 +46,13 @@ namespace RedisConsoleClientStackExchange
                 Age = 26,
                 IsMinor = false
             };
-
-
-            //db.StringSet(someFellow.Id, someFellow);
-
+            db.StringSet(JsonConvert.SerializeObject(someFellow.Id), JsonConvert.SerializeObject(someFellow));
+            string personJsonString = db.StringGet("1");
+            Person gottenfromRedisPersonCustom = JsonConvert.DeserializeObject<Person>(personJsonString);
 
             //setting and getting an object from redis using StackExchange.Redis.Extensions
-            var serializer = new NewtonsoftSerializer();
-            var cacheClient = new StackExchangeRedisCacheClient(redis,serializer);
+            ISerializer serializer = new NewtonsoftSerializer();
+            ICacheClient cacheClient = new StackExchangeRedisCacheClient(redis,serializer);
             bool success = cacheClient.Add(someFellow.Id.ToString(), someFellow);
             Person gottenfromRedisPerson = cacheClient.Get<Person>("1");
 
@@ -60,7 +60,7 @@ namespace RedisConsoleClientStackExchange
             //Writing out the stuff we got back from redis to the console.
             Console.WriteLine($"Gotten from String: {gottenFromRedisString}");
             Console.WriteLine($"Gotten from Array: {gottenfromRedisByteArray}");
-           //Console.WriteLine($"Gotten from Custome Serializer: {gottenfromRedisByteArray}");
+            Console.WriteLine($"Gotten from Custom Serializer: {gottenfromRedisPersonCustom.Name}");
             Console.WriteLine($"Gotten from StackExchange.Redis.Extensions: {gottenfromRedisPerson.Name}");
 
 
